@@ -2,6 +2,7 @@
 const shedButton = document.getElementById('shed-button');
 const treeButton = document.getElementById('tree-button');
 const boulderButton = document.getElementById('boulder-button');
+const resetButton = document.getElementById('reset-button');
 
 const shedContainer = document.getElementById('shed-container');
 const treeContainer = document.getElementById('tree-container');
@@ -41,6 +42,7 @@ function handleGuess(correctSpot, userGuess) {
     // then increment the guesses
     totalGuesses++;
     // then grab the appropriate container element for the correct guess from the DOM
+    // then add the face class to that element so that the face shows up
     if (correctSpot === 'boulder') {
         boulderContainer.classList.add('face');
     } else if (correctSpot === 'tree') {
@@ -48,7 +50,6 @@ function handleGuess(correctSpot, userGuess) {
     } else {
         shedContainer.classList.add('face');
     }
-    // then add the face class to that element so that the face shows up
     // then if the user guess is correct, increment the correct guesses
     if (correctSpot === userGuess) {
         correctGuesses++;
@@ -68,3 +69,10 @@ function displayResults() {
     lossesEl.textContent = totalGuesses - correctGuesses;
     totalEl.textContent = totalGuesses;
 }
+
+resetButton.addEventListener('click', () => {
+    resetStyles();
+    correctGuesses = 0;
+    totalGuesses = 0;
+    displayResults();
+});
