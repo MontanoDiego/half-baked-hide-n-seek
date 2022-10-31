@@ -49,11 +49,11 @@ function handleGuess(correctSpot, userGuess) {
         shedContainer.classList.add('face');
     }
     // then add the face class to that element so that the face shows up
-
     // then if the user guess is correct, increment the correct guesses
     if (correctSpot === userGuess) {
         correctGuesses++;
     }
+    displayResults();
     // update the DOM to show this change to the user (including the losses, not tracked directly in state)
 }
 
@@ -61,4 +61,10 @@ function resetStyles() {
     shedContainer.classList.remove('face');
     treeContainer.classList.remove('face');
     boulderContainer.classList.remove('face');
+}
+
+function displayResults() {
+    winsEl.textContent = correctGuesses;
+    lossesEl.textContent = totalGuesses - correctGuesses;
+    totalEl.textContent = totalGuesses;
 }
